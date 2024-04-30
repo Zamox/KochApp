@@ -73,7 +73,7 @@ public class Startseite extends JFrame implements ActionListener {
             JButton angeklickterButton = (JButton)ae.getSource();
             String name = angeklickterButton.getName();
             UUID id = UUID.fromString(name);
-            new ListenÜbersicht(id, dataReader);
+            new ListenUebersicht(id, dataReader);
         });
         Kategorie[] kategorieArray = alleKategorien.toArray(new Kategorie[0]);
         String [] kategorien = new String[kategorieArray.length];
@@ -91,7 +91,7 @@ public class Startseite extends JFrame implements ActionListener {
                 JButton angeklickterButton = (JButton)ae.getSource();
                 String name = angeklickterButton.getName();
                 UUID id = UUID.fromString(name);
-                new ListenÜbersicht(id, dataReader);
+                new ListenUebersicht(id, dataReader);
             });
         }
         Color farbeGrau = new Color(0xFCFCFC);

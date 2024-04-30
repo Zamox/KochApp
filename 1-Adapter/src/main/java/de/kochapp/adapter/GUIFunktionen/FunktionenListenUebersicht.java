@@ -7,7 +7,7 @@ import de.kochapp.domain.Rezept.RezeptRepository;
 
 import java.util.UUID;
 
-public class FunktionenListenÜbersicht {
+public class FunktionenListenUebersicht {
     final static KategorieRepository kategorieRepository = new KategorieRepository();
     final static RezeptRepository rezeptRepository = new RezeptRepository();
 

@@ -2,7 +2,7 @@ package de.kochapp.plugins.gui;
 
 import de.kochapp.adapter.Datenpersistenz.DataReader;
 import de.kochapp.adapter.Datenpersistenz.CSVRezept;
-import de.kochapp.adapter.GUIFunktionen.FunktionenListenÜbersicht;
+import de.kochapp.adapter.GUIFunktionen.FunktionenListenUebersicht;
 import de.kochapp.domain.Rezept.Rezept;
 
 import javax.swing.*;
@@ -11,25 +11,25 @@ import java.util.UUID;
 
 /*Klasse für Listen Ansicht. In dieser KLasse wird ein FRame erzeugt, der Rezepte zu einer Kategorie UUID
 ausgibt. Ist die UUID 0 so handelt es sich um alle Rezepte*/
-public class ListenÜbersicht {
+public class ListenUebersicht {
     JFrame frame = new JFrame();
-    JPanel pnlListenÜbersicht = new JPanel(new BorderLayout());
+    JPanel pnlListenuebersicht = new JPanel(new BorderLayout());
     ImageIcon logo = new ImageIcon("src/main/resources/Pictures/RecipeCollection.png");
     DataReader dataReader;
 
-    /*Erstellung des Headers mit dem Logo und dem Footer mit den Buttons, um ein neues Rezept hinzuzufügen, ein Zufallrezept auszuwählen
+    /*Erstellung des Headers mit dem Logo und dem Footer mit den Buttons, um ein neues Rezept hinzuzufuegen, ein Zufallrezept auszuwählen
     oder auf die Homepage zu gelangen */
-    public ListenÜbersicht(UUID id, DataReader dataReaderImport){
+    public ListenUebersicht(UUID id, DataReader dataReaderImport){
         this.dataReader = dataReaderImport;
         System.out.println("Die Listpage wird gestartet");
         JPanel pnlKopfzeile = new JPanel();
         pnlKopfzeile.setBackground(Color.white);
         JLabel labelLogo = new JLabel(logo);
         pnlKopfzeile.add(labelLogo);
-        pnlListenÜbersicht.add(pnlKopfzeile, BorderLayout.NORTH);
+        pnlListenuebersicht.add(pnlKopfzeile, BorderLayout.NORTH);
         JPanel pnlFusszeile = new JPanel(new GridLayout());
-        Color farbeGrün = new Color(0x00AAAA);
-        pnlFusszeile.setBackground(farbeGrün);
+        Color farbeGruen = new Color(0x00AAAA);
+        pnlFusszeile.setBackground(farbeGruen);
         JButton buttonZufallsgenerator = new JButton("Zufallsgenerator");
         buttonZufallsgenerator.addActionListener(ae -> {
             new ZufallsGenerator(dataReader);
@@ -42,22 +42,22 @@ public class ListenÜbersicht {
             new NeuesRezept(dataReader);
             frame.dispose();
         });
-        buttonZufallsgenerator.setBackground(farbeGrün);
-        buttonStartseite.setBackground(farbeGrün);
-        buttonNeuesRezept.setBackground(farbeGrün);
+        buttonZufallsgenerator.setBackground(farbeGruen);
+        buttonStartseite.setBackground(farbeGruen);
+        buttonNeuesRezept.setBackground(farbeGruen);
         pnlFusszeile.add(buttonZufallsgenerator);
         pnlFusszeile.add(buttonStartseite);
         pnlFusszeile.add(buttonNeuesRezept);
-        pnlListenÜbersicht.add(pnlFusszeile, BorderLayout.SOUTH);
-        initBenutzeroberfläche(id);
-        frame.add( pnlListenÜbersicht );
+        pnlListenuebersicht.add(pnlFusszeile, BorderLayout.SOUTH);
+        initBenutzeroberflaeche(id);
+        frame.add( pnlListenuebersicht );
         frame.setVisible(true);
         frame.setBounds(300,70,900,650);
     }
 
     //Diese Methode erzeugt eine Liste, mit allen Rezepten zu einer UUID
-    private void initBenutzeroberfläche(UUID id) {
-        String[][] alleRezepte = FunktionenListenÜbersicht.alleRezepte(id, dataReader);
+    private void initBenutzeroberflaeche(UUID id) {
+        String[][] alleRezepte = FunktionenListenUebersicht.alleRezepte(id, dataReader);
         Rezept rezept = new Rezept();
         CSVRezept csvRezept = new CSVRezept(rezept);
         String[] spaltenNamen = csvRezept.bekommeCSVKopf();
@@ -73,6 +73,6 @@ public class ListenÜbersicht {
             }
         }
         );
-        pnlListenÜbersicht.add(new JScrollPane(tabelle), BorderLayout.CENTER);
+        pnlListenuebersicht.add(new JScrollPane(tabelle), BorderLayout.CENTER);
     }
 }
