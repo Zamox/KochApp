@@ -1,0 +1,181 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CSVRezept</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.kochapp.adapter.Datenpersistenz</a>
+</div>
+
+<h1>Coverage Summary for Class: CSVRezept (de.kochapp.adapter.Datenpersistenz)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CSVRezept</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72,2%
+  </span>
+  <span class="absValue">
+    (13/18)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CSVRezept$CSVPosition</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    78,3%
+  </span>
+  <span class="absValue">
+    (18/23)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.kochapp.adapter.Datenpersistenz;
+&nbsp;
+&nbsp;import de.kochapp.adapter.Datenpersistenz.Interface.ICSVPersistierbar;
+&nbsp;import de.kochapp.domain.Rezept.Rezept;
+&nbsp;import de.kochapp.domain.Kategorie.Kategorie;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class CSVRezept implements ICSVPersistierbar {
+&nbsp;    Rezept rezept;
+&nbsp;
+<b class="fc">&nbsp;    public CSVRezept(Rezept rezept) {</b>
+<b class="fc">&nbsp;        this.rezept = rezept;</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public enum CSVPosition {</b>
+<b class="fc">&nbsp;        REZEPT_ID,</b>
+<b class="fc">&nbsp;        REZEPT_TITEL,</b>
+<b class="fc">&nbsp;        REZEPT_SCHWIERIGKEITSGRAD,</b>
+<b class="fc">&nbsp;        REZEPT_BESCHREIBUNG</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Object bekommeUUID() {
+<b class="fc">&nbsp;        return this.rezept.bekommeUUID();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String[] bekommeCSVKopf() {
+<b class="fc">&nbsp;        return new String[]{&quot;RezeptID&quot;,&quot;Titel&quot;,&quot;Schwierigkeitsgrad&quot;,&quot;Beschreibung&quot;};</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String[] bekommeCSVDaten() {
+<b class="fc">&nbsp;        String[] daten = new String[CSVPosition.values().length];</b>
+<b class="fc">&nbsp;        daten[CSVPosition.REZEPT_ID.ordinal()] = String.valueOf(this.rezept.bekommeUUID());</b>
+<b class="fc">&nbsp;        daten[CSVPosition.REZEPT_TITEL.ordinal()] = String.valueOf(this.rezept.bekommeTitel());</b>
+<b class="fc">&nbsp;        daten[CSVPosition.REZEPT_SCHWIERIGKEITSGRAD.ordinal()] = String.valueOf(this.rezept.bekommeSchwierigkeitsgrad());</b>
+<b class="fc">&nbsp;        daten[CSVPosition.REZEPT_BESCHREIBUNG.ordinal()] = String.valueOf(this.rezept.bekommeBeschreibung());</b>
+<b class="fc">&nbsp;        return daten;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;String[]&gt; bekommeKategorienArray() {
+<b class="fc">&nbsp;        List&lt;String[]&gt; kategorienListe = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        for (Kategorie kategorie : this.rezept.bekommeKategorien()) {</b>
+<b class="nc">&nbsp;            String[] daten = new String[2];</b>
+<b class="nc">&nbsp;            daten[0] = String.valueOf(this.rezept.bekommeUUID());</b>
+<b class="nc">&nbsp;            daten[1] = String.valueOf(kategorie.bekommeUUID());</b>
+<b class="nc">&nbsp;            kategorienListe.add(daten);</b>
+<b class="nc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return kategorienListe;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-30 01:54</div>
+</div>
+</body>
+</html>

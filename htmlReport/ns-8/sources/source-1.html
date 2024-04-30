@@ -1,0 +1,87 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > IEntityManager</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.kochapp.domain.Interface</a>
+</div>
+
+<h1>Coverage Summary for Class: IEntityManager (de.kochapp.domain.Interface)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">IEntityManager</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.kochapp.domain.Interface;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;public interface IEntityManager {
+&nbsp;    boolean existiert(IPersistierbar ip );
+&nbsp;
+&nbsp;    // Speicherung der Objekte im EntityManager
+&nbsp;    void speichere(IPersistierbar ip) throws Exception;
+&nbsp;
+&nbsp;    // Suche einzelnes Objekt im EntityManger
+&nbsp;    &lt;T extends IPersistierbar&gt; T finde(Class&lt;T&gt; c, UUID key );
+&nbsp;
+&nbsp;    // Suche alle Objekte der selben Klasse im EntityManager
+&nbsp;    &lt;T extends IPersistierbar&gt; List&lt;T&gt; findeAlle(Class&lt;T&gt; c );
+&nbsp;
+&nbsp;    // Enfterne Objekt aus EntityManger
+&nbsp;    void entferne(IPersistierbar ip );
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-30 01:54</div>
+</div>
+</body>
+</html>

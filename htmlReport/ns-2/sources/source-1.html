@@ -1,0 +1,128 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ButtonEditor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.kochapp.adapter.GUIFunktionen</a>
+</div>
+
+<h1>Coverage Summary for Class: ButtonEditor (de.kochapp.adapter.GUIFunktionen)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ButtonEditor</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.kochapp.adapter.GUIFunktionen;
+&nbsp;
+&nbsp;import javax.swing.*;
+&nbsp;import java.awt.*;
+&nbsp;
+&nbsp;public class ButtonEditor extends DefaultCellEditor
+&nbsp;{
+&nbsp;    private String label;
+&nbsp;
+&nbsp;    public ButtonEditor(JCheckBox checkBox)
+&nbsp;    {
+<b class="nc">&nbsp;        super(checkBox);</b>
+&nbsp;    }
+&nbsp;    public Component getTableCellEditorComponent(JTable tabele, Object wert,
+&nbsp;                                                 boolean istAusgewählt, int zeile, int spalte, JButton button)
+&nbsp;    {
+<b class="nc">&nbsp;        label = (wert == null) ? &quot;-&quot; : wert.toString();</b>
+<b class="nc">&nbsp;        button.setText(label);</b>
+<b class="nc">&nbsp;        return button;</b>
+&nbsp;    }
+&nbsp;    public Object getCellEditorValue()
+&nbsp;    {
+<b class="nc">&nbsp;        return label;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-30 01:54</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ZufallsGenerator</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.kochapp.plugins.gui</a>
+</div>
+
+<h1>Coverage Summary for Class: ZufallsGenerator (de.kochapp.plugins.gui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ZufallsGenerator</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/33)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.kochapp.plugins.gui;
+&nbsp;
+&nbsp;import de.kochapp.adapter.Datenpersistenz.DataReader;
+&nbsp;import de.kochapp.adapter.GUIFunktionen.FunktionenZufallsGenerator;
+&nbsp;import de.kochapp.domain.Rezept.Rezept;
+&nbsp;import de.kochapp.domain.Rezept.RezeptRepository;
+&nbsp;
+&nbsp;import javax.swing.*;
+&nbsp;import java.awt.*;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;/* Klasse erzeugt ein Zufalliges Rezept und zeigt es an. Das Rezept kann dann ausgewählt werden oder ein
+&nbsp;neues zufälliges Rezept kann erzeugt werden*/
+&nbsp;public class ZufallsGenerator {
+<b class="nc">&nbsp;    final static RezeptRepository rezeptRepository = new RezeptRepository();</b>
+<b class="nc">&nbsp;    JFrame frame = new JFrame();</b>
+<b class="nc">&nbsp;    JPanel pnlZufallsGenerator = new JPanel(new BorderLayout());</b>
+&nbsp;
+<b class="nc">&nbsp;    public ZufallsGenerator(DataReader dataReader) {</b>
+<b class="nc">&nbsp;        System.out.println(&quot;Der Randomizer wird gestartet&quot;);</b>
+<b class="nc">&nbsp;        UUID zufälligeRezeptID = FunktionenZufallsGenerator.zufälligeRezeptUUID(dataReader);</b>
+<b class="nc">&nbsp;        Rezept zufälligesRezept = rezeptRepository.findeRezept(zufälligeRezeptID, dataReader.entityManager);</b>
+<b class="nc">&nbsp;        JLabel labelVorschlag = new JLabel(zufälligesRezept.bekommeTitel());</b>
+<b class="nc">&nbsp;        labelVorschlag.setFont(new Font(&quot;Calibri&quot;, Font.PLAIN, 30));</b>
+<b class="nc">&nbsp;        JLabel labelKategorie = new JLabel(&quot;Kategorie: &quot;);</b>
+<b class="nc">&nbsp;        JLabel labelZufallsrezeptKategorie = new JLabel(zufälligesRezept.bekommeKategorien().toString());</b>
+<b class="nc">&nbsp;        JButton buttonRezeptÖffnen = new JButton(&quot;Rezept öffnen&quot;);</b>
+<b class="nc">&nbsp;        buttonRezeptÖffnen.addActionListener(ae -&gt; {</b>
+<b class="nc">&nbsp;            new RezeptAnsicht(zufälligeRezeptID, null, dataReader);</b>
+<b class="nc">&nbsp;            frame.dispose();</b>
+&nbsp;        });
+<b class="nc">&nbsp;        JButton buttonNeuesZufallsRezept = new JButton(&quot;Neues Zufallsrezept&quot;);</b>
+<b class="nc">&nbsp;        buttonNeuesZufallsRezept.addActionListener(ae -&gt; {</b>
+<b class="nc">&nbsp;            new ZufallsGenerator(dataReader);</b>
+<b class="nc">&nbsp;            frame.dispose();</b>
+&nbsp;        });
+<b class="nc">&nbsp;        JPanel pnlOben = new JPanel(new FlowLayout());</b>
+<b class="nc">&nbsp;        pnlOben.add(labelVorschlag);</b>
+<b class="nc">&nbsp;        pnlZufallsGenerator.add(pnlOben, BorderLayout.NORTH);</b>
+<b class="nc">&nbsp;        JPanel pnlMitte = new JPanel(new FlowLayout());</b>
+<b class="nc">&nbsp;        pnlMitte.add(labelKategorie);</b>
+<b class="nc">&nbsp;        pnlMitte.add(labelZufallsrezeptKategorie);</b>
+<b class="nc">&nbsp;        pnlZufallsGenerator.add(pnlMitte, BorderLayout.CENTER);</b>
+<b class="nc">&nbsp;        JPanel pnlUnten = new JPanel(new FlowLayout());</b>
+<b class="nc">&nbsp;        pnlUnten.add(buttonRezeptÖffnen);</b>
+<b class="nc">&nbsp;        pnlUnten.add(buttonNeuesZufallsRezept);</b>
+<b class="nc">&nbsp;        pnlZufallsGenerator.add(pnlUnten, BorderLayout.SOUTH);</b>
+<b class="nc">&nbsp;        frame.add( pnlZufallsGenerator );</b>
+<b class="nc">&nbsp;        frame.setVisible(true);</b>
+<b class="nc">&nbsp;        frame.setBounds(500,250,500,170);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-30 01:54</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Zutat</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.kochapp.domain.Rezept</a>
+</div>
+
+<h1>Coverage Summary for Class: Zutat (de.kochapp.domain.Rezept)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Zutat</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (7/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.kochapp.domain.Rezept;
+&nbsp;
+&nbsp;import de.kochapp.domain.Interface.IPersistierbar;
+&nbsp;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;/* Zutat Klasse: Definiert eine Zutat eines Rezeptes */
+&nbsp;public class Zutat implements IPersistierbar{
+&nbsp;    private final UUID zutat_id;
+&nbsp;    private final UUID rezept_id;
+&nbsp;    private final Menge menge;
+&nbsp;    private final String zutat_bezeichnung;
+&nbsp;
+<b class="nc">&nbsp;    public Zutat(UUID rezept_id, Menge menge, String zutat_bezeichnung) {</b>
+<b class="nc">&nbsp;        this.zutat_id = UUID.randomUUID();</b>
+<b class="nc">&nbsp;        this.rezept_id = rezept_id;</b>
+<b class="nc">&nbsp;        this.menge = menge;</b>
+<b class="nc">&nbsp;        this.zutat_bezeichnung = zutat_bezeichnung;</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public Zutat(UUID zutat_id, UUID rezept_id, Menge menge, String zutat_bezeichnung) {</b>
+<b class="fc">&nbsp;        this.zutat_id = zutat_id;</b>
+<b class="fc">&nbsp;        this.rezept_id = rezept_id;</b>
+<b class="fc">&nbsp;        this.menge = menge;</b>
+<b class="fc">&nbsp;        this.zutat_bezeichnung = zutat_bezeichnung;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public UUID bekommeUUID() {
+<b class="fc">&nbsp;        return zutat_id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Menge bekommeMenge() {
+<b class="nc">&nbsp;        return menge;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String bekommeBezeichnung() {
+<b class="nc">&nbsp;        return zutat_bezeichnung;</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public UUID bekommeRezeptId() { return rezept_id; }</b>
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-30 01:54</div>
+</div>
+</body>
+</html>

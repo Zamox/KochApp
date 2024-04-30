@@ -1,0 +1,144 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Einheit</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.kochapp.domain.Rezept</a>
+</div>
+
+<h1>Coverage Summary for Class: Einheit (de.kochapp.domain.Rezept)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Einheit</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83,3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (18/20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.kochapp.domain.Rezept;
+&nbsp;
+<b class="fc">&nbsp;public enum Einheit {</b>
+&nbsp;
+<b class="fc">&nbsp;    Kilogramm(&quot;kg&quot;, &quot;Kilogramm&quot;),</b>
+<b class="fc">&nbsp;    Gramm(&quot;g&quot;, &quot;Gramm&quot;),</b>
+<b class="fc">&nbsp;    Milliliter(&quot;ml&quot;, &quot;Milliliter&quot;),</b>
+<b class="fc">&nbsp;    Liter(&quot;l&quot;, &quot;Liter&quot;),</b>
+<b class="fc">&nbsp;    Esslöffel(&quot;EL&quot;, &quot;Esslöffel&quot;),</b>
+<b class="fc">&nbsp;    Teelöffel(&quot;TL&quot;, &quot;Teelöffel&quot;),</b>
+<b class="fc">&nbsp;    Stück(&quot;Stück&quot;, &quot;Stück&quot;),</b>
+<b class="fc">&nbsp;    Packung(&quot;Pck&quot;, &quot;Packung&quot;),</b>
+<b class="fc">&nbsp;    Priese(&quot;Priese&quot;, &quot;Priese&quot;),</b>
+<b class="fc">&nbsp;    Glas(&quot;Glas&quot;, &quot;Glas&quot;),</b>
+<b class="fc">&nbsp;    Dose(&quot;Dose&quot;, &quot;Dose&quot;);</b>
+&nbsp;
+&nbsp;    private final String einheit_bezeichnung;
+&nbsp;    private final String einheit_beschreibung;
+&nbsp;
+<b class="fc">&nbsp;    Einheit(String einheit_bezeichnung, String einheit_beschreibung) {</b>
+<b class="fc">&nbsp;        if (einheit_bezeichnung.isEmpty()|| einheit_beschreibung.isEmpty()) {</b>
+<b class="nc">&nbsp;            throw new IllegalArgumentException(</b>
+&nbsp;                    &quot;Name oder Beschreibung dürfen nicht leer gelassen werden!&quot;);
+&nbsp;        }
+<b class="fc">&nbsp;        this.einheit_bezeichnung = einheit_bezeichnung;</b>
+<b class="fc">&nbsp;        this.einheit_beschreibung = einheit_beschreibung;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String bekommeBezeichnung() {
+<b class="fc">&nbsp;        return this.einheit_bezeichnung;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String bekommeBeschreibung() {
+<b class="nc">&nbsp;        return this.einheit_beschreibung;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return einheit_bezeichnung;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-30 01:54</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,304 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > RezeptBearbeiten</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">de.kochapp.plugins.gui</a>
+</div>
+
+<h1>Coverage Summary for Class: RezeptBearbeiten (de.kochapp.plugins.gui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RezeptBearbeiten</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/138)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package de.kochapp.plugins.gui;
+&nbsp;
+&nbsp;import de.kochapp.adapter.Datenpersistenz.DataReader;
+&nbsp;import de.kochapp.adapter.GUIFunktionen.ButtonEditor;
+&nbsp;import de.kochapp.adapter.GUIFunktionen.ButtonRenderer;
+&nbsp;import de.kochapp.adapter.GUIFunktionen.FunktionenRezeptBearbeiten;
+&nbsp;import de.kochapp.domain.Kategorie.Kategorie;
+&nbsp;import de.kochapp.domain.Kategorie.KategorieRepository;
+&nbsp;import de.kochapp.domain.Rezept.Einheit;
+&nbsp;import de.kochapp.domain.Rezept.Rezept;
+&nbsp;import de.kochapp.domain.Rezept.Schwierigkeit;
+&nbsp;import de.kochapp.domain.Rezept.Zutat;
+&nbsp;
+&nbsp;import javax.swing.*;
+&nbsp;import javax.swing.table.DefaultTableModel;
+&nbsp;import javax.swing.table.TableColumn;
+&nbsp;import java.awt.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;/* Die KLasse erzeugt einen Frame, indem man ein neues Rezept hinzufügen kann*/
+&nbsp;public class RezeptBearbeiten {
+<b class="nc">&nbsp;    final static KategorieRepository kategorieRepository = new KategorieRepository();</b>
+<b class="nc">&nbsp;    JFrame frame = new JFrame();</b>
+<b class="nc">&nbsp;    JPanel pnlNeuesRezept = new JPanel(new BorderLayout());</b>
+<b class="nc">&nbsp;    JButton button = new JButton();</b>
+&nbsp;
+<b class="nc">&nbsp;    public RezeptBearbeiten(Rezept rezept, DataReader dataReader)  {</b>
+<b class="nc">&nbsp;        JPanel pnlMitte = new JPanel(new BorderLayout());</b>
+<b class="nc">&nbsp;        JPanel pnlOben = new JPanel(new GridLayout(2,2));</b>
+<b class="nc">&nbsp;        System.out.println(&quot;Das Panel für ein neues Rezept wird gestartet&quot;);</b>
+<b class="nc">&nbsp;        JLabel labelTitel = new JLabel(&quot;Titel: &quot;);</b>
+<b class="nc">&nbsp;        JTextField textfeldTitel = new JTextField();</b>
+<b class="nc">&nbsp;        textfeldTitel.setText(rezept.bekommeTitel());</b>
+<b class="nc">&nbsp;        pnlOben.add(labelTitel);</b>
+<b class="nc">&nbsp;        pnlOben.add(textfeldTitel);</b>
+&nbsp;
+<b class="nc">&nbsp;        JLabel labelTags = new JLabel(&quot;Tags: &quot;);</b>
+<b class="nc">&nbsp;        List&lt;Kategorie&gt; kategorien = kategorieRepository.findeAlleKategorien(dataReader.entityManager);</b>
+<b class="nc">&nbsp;        List&lt;Kategorie&gt; kategorienAusgewählt = rezept.bekommeKategorien();</b>
+<b class="nc">&nbsp;        JPanel pnlCheckboxen = new JPanel(new FlowLayout());</b>
+<b class="nc">&nbsp;        Checkbox[] checkboxen = new Checkbox[kategorien.size()];</b>
+<b class="nc">&nbsp;        for(int i=0; i&lt;kategorien.size(); i++){</b>
+<b class="nc">&nbsp;            Checkbox checkboxKategorie = new Checkbox(kategorien.get(i).bekommeKurzform());</b>
+<b class="nc">&nbsp;            checkboxen[i]= checkboxKategorie;</b>
+<b class="nc">&nbsp;            pnlCheckboxen.add(checkboxKategorie);</b>
+<b class="nc">&nbsp;            for (Kategorie kategorie : kategorienAusgewählt) {</b>
+<b class="nc">&nbsp;                if (kategorien.get(i) == kategorie) {</b>
+<b class="nc">&nbsp;                    checkboxKategorie.setState(true);</b>
+&nbsp;                }
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+<b class="nc">&nbsp;        pnlOben.add(labelTags);</b>
+<b class="nc">&nbsp;        pnlCheckboxen.setPreferredSize(new Dimension(600,120));</b>
+<b class="nc">&nbsp;        pnlOben.add(pnlCheckboxen);</b>
+<b class="nc">&nbsp;        pnlMitte.add(pnlOben, BorderLayout.NORTH);</b>
+<b class="nc">&nbsp;        Einheit[] alleEinheiten = Einheit.values();</b>
+<b class="nc">&nbsp;        String [] stringEinheiten = new String[alleEinheiten.length];</b>
+<b class="nc">&nbsp;        for(int i=0; i&lt;alleEinheiten.length; i++){</b>
+<b class="nc">&nbsp;            stringEinheiten[i] = alleEinheiten[i].bekommeBezeichnung();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        JComboBox&lt;String&gt; comboBoxEinheit = new JComboBox&lt;&gt;(stringEinheiten);</b>
+<b class="nc">&nbsp;        JLabel labelZutaten = new JLabel(&quot;Zutaten: &quot;);</b>
+<b class="nc">&nbsp;        JPanel pnlZutaten = new JPanel(new BorderLayout());</b>
+&nbsp;
+<b class="nc">&nbsp;        DefaultTableModel model = new DefaultTableModel();</b>
+<b class="nc">&nbsp;        JTable tabelle = new JTable(model);</b>
+&nbsp;
+<b class="nc">&nbsp;        model.addColumn(&quot;Menge&quot;);</b>
+<b class="nc">&nbsp;        model.addColumn(&quot;Einheit&quot;);</b>
+<b class="nc">&nbsp;        model.addColumn(&quot;Zutat&quot;);</b>
+<b class="nc">&nbsp;        model.addColumn(&quot;Löschen&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        List&lt;Zutat&gt; zutaten = rezept.bekommeZutaten();</b>
+&nbsp;
+<b class="nc">&nbsp;        for(Zutat zutat : zutaten){</b>
+<b class="nc">&nbsp;            model.addRow(new Object[]{String.valueOf(zutat.bekommeMenge().dieMenge()),zutat.bekommeMenge().dieEinheit().bekommeBezeichnung(), String.valueOf(zutat.bekommeBezeichnung()), &quot;-&quot;});</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        TableColumn einheitSpalte = tabelle.getColumnModel().getColumn(1);</b>
+<b class="nc">&nbsp;        einheitSpalte.setCellEditor(new DefaultCellEditor(comboBoxEinheit));</b>
+<b class="nc">&nbsp;        tabelle.getColumn(&quot;Löschen&quot;).setCellRenderer(new ButtonRenderer());</b>
+<b class="nc">&nbsp;        tabelle.getColumn(&quot;Löschen&quot;).setCellEditor(new ButtonEditor(new JCheckBox()));</b>
+<b class="nc">&nbsp;        button.addActionListener(ae -&gt; {</b>
+<b class="nc">&nbsp;            System.out.print(&quot;Button geklickt&quot;);</b>
+<b class="nc">&nbsp;            if(tabelle.getSelectedRow() != -1) {</b>
+&nbsp;                // entferne die ausgeählte Zeile aus dem Model
+<b class="nc">&nbsp;                model.removeRow(tabelle.getSelectedRow());</b>
+<b class="nc">&nbsp;                JOptionPane.showMessageDialog(null, &quot;Die ausgewühlte Zeile würde erfolgreich gelöscht!&quot;);</b>
+&nbsp;            }
+&nbsp;        });
+<b class="nc">&nbsp;        tabelle.setMaximumSize(new Dimension(100,50));</b>
+<b class="nc">&nbsp;        pnlZutaten.add(new JScrollPane(tabelle), BorderLayout.CENTER);</b>
+<b class="nc">&nbsp;        JButton buttonNeueZutat = new JButton(&quot;Zutat hinzufügen&quot;);</b>
+<b class="nc">&nbsp;        buttonNeueZutat.addActionListener(ae -&gt; {</b>
+<b class="nc">&nbsp;            DefaultTableModel modelAusgangswerte = (DefaultTableModel) tabelle.getModel();</b>
+<b class="nc">&nbsp;            modelAusgangswerte.addRow(new Object[]{&quot;&quot;, &quot;l&quot;, &quot;&quot;, &quot;-&quot;});</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        pnlZutaten.add(buttonNeueZutat, BorderLayout.SOUTH);</b>
+<b class="nc">&nbsp;        pnlZutaten.add(labelZutaten, BorderLayout.NORTH);</b>
+<b class="nc">&nbsp;        pnlZutaten.setPreferredSize(new Dimension(290,200));</b>
+<b class="nc">&nbsp;        pnlMitte.add(pnlZutaten, BorderLayout.EAST);</b>
+&nbsp;
+<b class="nc">&nbsp;        JPanel pnlWesten = new JPanel(new BorderLayout());</b>
+<b class="nc">&nbsp;        JLabel labelBeschreibung = new JLabel(&quot;Beschreibung: &quot;);</b>
+<b class="nc">&nbsp;        JTextArea textAreaBeschreibung = new JTextArea(rezept.bekommeBeschreibung());</b>
+<b class="nc">&nbsp;        textAreaBeschreibung.setLineWrap(true);</b>
+<b class="nc">&nbsp;        textAreaBeschreibung.setWrapStyleWord(true);</b>
+<b class="nc">&nbsp;        pnlWesten.add(labelBeschreibung, BorderLayout.NORTH);</b>
+<b class="nc">&nbsp;        pnlWesten.add(new JScrollPane(textAreaBeschreibung), BorderLayout.CENTER);</b>
+<b class="nc">&nbsp;        pnlWesten.setPreferredSize(new Dimension(290,200));</b>
+<b class="nc">&nbsp;        pnlMitte.add(pnlWesten, BorderLayout.WEST);</b>
+&nbsp;
+<b class="nc">&nbsp;        JPanel pnlUnten = new JPanel(new GridLayout(2,2));</b>
+<b class="nc">&nbsp;        JPanel pnlRadioButton = new JPanel(new FlowLayout());</b>
+<b class="nc">&nbsp;        JLabel labelSchwierigkeitsgrad = new JLabel(&quot;Schwierigkeitsgrad: &quot;);</b>
+<b class="nc">&nbsp;        Schwierigkeit[] alleSchwierigkeitsgrade = Schwierigkeit.values();</b>
+<b class="nc">&nbsp;        ButtonGroup gruppe = new ButtonGroup();</b>
+<b class="nc">&nbsp;        JRadioButton[] radiobuttons = new JRadioButton[alleSchwierigkeitsgrade.length];</b>
+<b class="nc">&nbsp;        Schwierigkeit schwierigkeitRezept = rezept.bekommeSchwierigkeitsgrad();</b>
+<b class="nc">&nbsp;        for(int i=0; i&lt;alleSchwierigkeitsgrade.length; i++){</b>
+<b class="nc">&nbsp;            JRadioButton radioButtonSchwierigkeiten = new JRadioButton(alleSchwierigkeitsgrade[i].toString());</b>
+<b class="nc">&nbsp;            if(schwierigkeitRezept.equals(alleSchwierigkeitsgrade[i])){</b>
+<b class="nc">&nbsp;                radioButtonSchwierigkeiten.setSelected(true);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            radiobuttons[i]= radioButtonSchwierigkeiten;</b>
+<b class="nc">&nbsp;            gruppe.add(radiobuttons[i]);</b>
+<b class="nc">&nbsp;            pnlRadioButton.add(radiobuttons[i]);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        pnlUnten.add(labelSchwierigkeitsgrad);</b>
+<b class="nc">&nbsp;        pnlUnten.add(pnlRadioButton);</b>
+&nbsp;
+<b class="nc">&nbsp;        JLabel labelDokument = new JLabel(&quot;Füge ein Dokument oder Bild hinzu &quot;);</b>
+<b class="nc">&nbsp;        JButton buttonDokument = new JButton(&quot;Wähle ein Dokument&quot;);</b>
+<b class="nc">&nbsp;        final String[] bildPfad = new String[1];</b>
+<b class="nc">&nbsp;        buttonDokument.addActionListener(ae -&gt; {</b>
+<b class="nc">&nbsp;            FileChooser chooser = new FileChooser();</b>
+<b class="nc">&nbsp;            bildPfad[0] = chooser.dateiAuswahl();</b>
+&nbsp;        });
+<b class="nc">&nbsp;        pnlUnten.add(labelDokument);</b>
+<b class="nc">&nbsp;        pnlUnten.add(buttonDokument);</b>
+<b class="nc">&nbsp;        pnlMitte.add(pnlUnten, BorderLayout.SOUTH);</b>
+&nbsp;
+<b class="nc">&nbsp;        JPanel pnlFusszeile = new JPanel(new FlowLayout());</b>
+<b class="nc">&nbsp;        JButton buttonAbbrechen = new JButton(&quot;Abbrechen&quot;);</b>
+<b class="nc">&nbsp;        buttonAbbrechen.addActionListener(ae -&gt; frame.dispose());</b>
+<b class="nc">&nbsp;        JButton buttonSpeichern = new JButton(&quot;Speichern&quot;);</b>
+<b class="nc">&nbsp;        buttonSpeichern.addActionListener(ae -&gt; {</b>
+&nbsp;
+<b class="nc">&nbsp;            String titel = textfeldTitel.getText();</b>
+<b class="nc">&nbsp;            String beschreibung = textAreaBeschreibung.getText();</b>
+<b class="nc">&nbsp;            String pfadBild = bildPfad[0];</b>
+&nbsp;
+<b class="nc">&nbsp;            ArrayList&lt;String&gt; checkedKategorien = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;            for (Checkbox checkbox : checkboxen) {</b>
+<b class="nc">&nbsp;                if (checkbox.getState()) {</b>
+<b class="nc">&nbsp;                    checkedKategorien.add(checkbox.getLabel());</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            String ausewaehlteSchwierigkeit = &quot;&quot;;</b>
+<b class="nc">&nbsp;            for (JRadioButton radiobutton : radiobuttons){</b>
+<b class="nc">&nbsp;                if (radiobutton.isSelected()){</b>
+<b class="nc">&nbsp;                    ausewaehlteSchwierigkeit = radiobutton.getText();</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if(!titel.equals(&quot;&quot;) &amp;&amp; !beschreibung.equals(&quot;&quot;) &amp;&amp; !checkedKategorien.isEmpty() &amp;&amp; !ausewaehlteSchwierigkeit.equals(&quot;&quot;)) {</b>
+<b class="nc">&nbsp;                ArrayList&lt;String[]&gt; zutatenListe = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;                for (int i = 0; i &lt; tabelle.getRowCount(); i++) {</b>
+<b class="nc">&nbsp;                    String mengeText = (String) tabelle.getModel().getValueAt(i, 0);</b>
+<b class="nc">&nbsp;                    String einheitText = (String) tabelle.getModel().getValueAt(i, 1);</b>
+<b class="nc">&nbsp;                    String name = (String) tabelle.getModel().getValueAt(i, 2);</b>
+<b class="nc">&nbsp;                    String[] zutatEingabe = {mengeText, einheitText, name};</b>
+<b class="nc">&nbsp;                    zutatenListe.add(zutatEingabe);</b>
+&nbsp;                }
+&nbsp;
+<b class="nc">&nbsp;                FunktionenRezeptBearbeiten.rezeptBearbeitungSpeichern(rezept, titel, beschreibung, checkedKategorien, ausewaehlteSchwierigkeit, pfadBild, zutatenListe, dataReader);</b>
+<b class="nc">&nbsp;                new RezeptAnsicht(rezept.bekommeUUID(), null, dataReader);</b>
+<b class="nc">&nbsp;                frame.dispose();</b>
+&nbsp;
+<b class="nc">&nbsp;            }else{</b>
+<b class="nc">&nbsp;                JOptionPane.showMessageDialog(null, &quot;Bitte füllen Sie alle Felder aus!&quot;);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        pnlFusszeile.add(buttonAbbrechen);</b>
+<b class="nc">&nbsp;        pnlFusszeile.add(buttonSpeichern);</b>
+<b class="nc">&nbsp;        pnlNeuesRezept.add(pnlMitte, BorderLayout.CENTER);</b>
+<b class="nc">&nbsp;        pnlNeuesRezept.add(pnlFusszeile, BorderLayout.SOUTH);</b>
+&nbsp;
+<b class="nc">&nbsp;        frame.add( pnlNeuesRezept );</b>
+<b class="nc">&nbsp;        frame.setVisible(true);</b>
+<b class="nc">&nbsp;        frame.pack();</b>
+<b class="nc">&nbsp;        frame.setLocationRelativeTo(null);</b>
+<b class="nc">&nbsp;        frame.setBounds(400,100,600,700);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-30 01:54</div>
+</div>
+</body>
+</html>
